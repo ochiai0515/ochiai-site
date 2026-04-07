@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おかげさまで公民館 オチアイ｜茨城県古河市の古民家公民館</title>
+<meta name="description" content="茨城県古河市にある私設公民館。誰でも自由に、目的があってもなくても、落ち合える場所。古民家の縁側で、まちの茶の間。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c2416;
+    --ink-light: #5c4f3a;
+    --ink-muted: #9a8a72;
+    --paper: #faf6ef;
+    --paper-warm: #f5ede0;
+    --paper-dark: #ede3d4;
+    --accent: #8b5e3c;
+    --accent-light: #c4956a;
+    --green: #4a6741;
+    --green-light: #e8f0e6;
+    --border: rgba(139,94,60,0.18);
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ── 和紙テクスチャ風の背景 ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,94,60,0.015) 2px, rgba(139,94,60,0.015) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(139,94,60,0.01) 4px, rgba(139,94,60,0.01) 5px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── ナビゲーション ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-reserve {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 6px 16px;
+    border-radius: 2px;
+    font-size: 12px !important;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-reserve:hover { background: var(--ink) !important; color: #fff; }
+
+  /* ── ハンバーガー（スマホ） ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: all 0.3s;
+  }
+
+  /* ── ヒーロー ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--paper-warm);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 60%, rgba(139,94,60,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(74,103,65,0.06) 0%, transparent 50%);
+  }
+
+  /* 縁側の柱イメージ（装飾線） */
+  .hero-pillar {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  }
+  .hero-pillar.left { left: 12%; }
+  .hero-pillar.right { right: 12%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 640px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-family: var(--sans);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--ink-muted);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 2;
+    margin-bottom: 3rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+  .btn-primary:hover { background: var(--ink); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    padding: 13px 32px;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+  .btn-secondary:hover { background: var(--accent); color: #fff; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-muted);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    animation: float 2s ease-in-out infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--ink-muted), transparent);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── セクション共通 ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+  }
+
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent-light);
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .section-lead {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 2;
+    max-width: 560px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 1.5rem 0;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--paper);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-photo {
+    position: relative;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--paper-dark);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--ink-muted);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    border: 1px dashed var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(139,94,60,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 70%, rgba(74,103,65,0.04) 0%, transparent 40%);
+  }
+
+  .photo-icon {
+    font-size: 2rem;
+    opacity: 0.4;
+  }
+
+  .photo-frame {
+    position: absolute;
+    top: -8px; left: -8px;
+    right: 8px; bottom: 8px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .about-text h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 2;
+    margin-bottom: 1rem;
+  }
+
+  /* ── FEATURES ── */
+  #features {
+    background: var(--paper-warm);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2rem 1.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 4px 20px rgba(44,36,22,0.08);
+    transform: translateY(-2px);
+  }
+
+  .feature-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--paper-dark);
+    font-weight: 300;
+    display: block;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .feature-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  /* ── SERVICES ── */
+  #services {
+    background: var(--paper);
+  }
+
+  .services-list {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .service-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--paper-warm);
+    transition: border-color 0.2s;
+  }
+
+  .service-item:hover { border-color: var(--accent-light); }
+
+  .service-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .service-name {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+
+  /* ── HOURS / PRICE ── */
+  #visit {
+    background: var(--paper-warm);
+  }
+
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .visit-block h3 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.06em;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(139,94,60,0.08);
+    font-size: 13px;
+  }
+
+  .hours-label { color: var(--ink-light); }
+  .hours-time { color: var(--ink); font-weight: 400; }
+
+  .price-note {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    padding: 1rem 1.25rem;
+    border-radius: 0 2px 2px 0;
+    margin-top: 1rem;
+  }
+
+  .price-note p {
+    font-size: 13px;
+    color: var(--green);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .price-main {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 300;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .price-sub {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  /* ── SUPPORT ── */
+  #support {
+    background: var(--paper);
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .support-card {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .support-card:hover { box-shadow: 0 4px 20px rgba(44,36,22,0.08); }
+
+  .support-img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    background: var(--paper-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .support-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(44,36,22,0.15));
+  }
+
+  .support-body {
+    padding: 1.25rem;
+    background: var(--paper);
+  }
+
+  .support-tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .support-title {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+
+  .support-desc {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+
+  /* ── NEWS ── */
+  #news {
+    background: var(--paper-warm);
+  }
+
+  .news-list {
+    margin-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .news-item {
+    display: flex;
+    gap: 2rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: opacity 0.2s;
+    align-items: baseline;
+  }
+
+  .news-item:hover { opacity: 0.7; }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    font-family: var(--serif);
+    letter-spacing: 0.05em;
+    min-width: 80px;
+  }
+
+  .news-cat {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    border: 1px solid var(--accent-light);
+    padding: 1px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    font-weight: 400;
+  }
+
+  .news-title {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .news-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1.5rem;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .news-more:hover { opacity: 0.7; }
+
+  /* ── ACCESS ── */
+  #access {
+    background: var(--paper);
+  }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .map-embed {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--paper-dark);
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .access-info dt {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    font-weight: 400;
+    margin-top: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .access-info dt:first-child { margin-top: 0; }
+
+  .access-info dd {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-left: 0;
+  }
+
+  .access-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--paper-warm);
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  /* ── CTA ── */
+  #cta {
+    background: var(--ink);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  #cta .section-label { color: var(--accent-light); }
+
+  #cta .section-title {
+    color: var(--paper);
+    margin-bottom: 0.75rem;
+  }
+
+  #cta p {
+    color: rgba(250,246,239,0.6);
+    font-size: 13px;
+    margin-bottom: 2.5rem;
+    line-height: 2;
+  }
+
+  #cta .btn-primary {
+    background: var(--accent-light);
+  }
+  #cta .btn-primary:hover { background: var(--accent); }
+
+  #cta .btn-secondary {
+    color: var(--paper);
+    border-color: rgba(250,246,239,0.3);
+  }
+  #cta .btn-secondary:hover { background: rgba(250,246,239,0.1); color: var(--paper); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1e1912;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: end;
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--paper-warm);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-address {
+    font-size: 11px;
+    color: rgba(250,246,239,0.4);
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    color: rgba(250,246,239,0.4);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--paper-warm); }
+
+  .footer-bottom {
+    max-width: 900px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(250,246,239,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    color: rgba(250,246,239,0.25);
+    letter-spacing: 0.08em;
+  }
+
+  .sns-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(250,246,239,0.4);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .sns-link:hover { color: var(--paper-warm); }
+
+  /* ── アニメーション ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── レスポンシブ ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 56px; left: 0; right: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem;
+      gap: 1rem;
+      z-index: 99;
+    }
+    .hamburger { display: flex; }
+
+    section { padding: 4rem 1.25rem; }
+
+    .about-grid,
+    .visit-grid,
+    .access-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    .features-grid,
+    .support-grid { grid-template-columns: 1fr; }
+
+    .services-list { grid-template-columns: 1fr; }
+
+    .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+
+    .hero-pillar { display: none; }
+    .hero-content { padding: 5rem 1.25rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav>
+  <a href="#hero" class="nav-logo">おかげさまで公民館 オチアイ</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">オチアイとは</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#visit">ご利用案内</a></li>
+    <li><a href="#news">お知らせ</a></li>
+    <li><a href="#access">アクセス</a></li>
+    <li><a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="nav-reserve">ご予約</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ヒーロー -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pillar left"></div>
+  <div class="hero-pillar right"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">茨城県古河市 久能 ── 私設公民館</span>
+    <h1 class="hero-title">おかげさまで<br>公民館 オチアイ</h1>
+    <p class="hero-subtitle">good meet, good place</p>
+    <p class="hero-desc">
+      誰でも自由に、<br>
+      目的があってもなくても、<br>
+      落ち合える場所。
+    </p>
+    <div class="hero-buttons">
+      <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary">ご予約はこちら</a>
+      <a href="#about" class="btn-secondary">オチアイを知る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">About</span>
+      <h2 class="section-title">まるで実家。<br>懐かしさが心を包む場所。</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo fade-in">
+        <div class="photo-frame"></div>
+        <div class="photo-placeholder">
+          <!-- ここに施設写真を入れてください -->
+          <!-- <img src="施設写真.jpg" alt="オチアイ外観" style="width:100%;height:100%;object-fit:cover;"> -->
+          <span class="photo-icon">🏡</span>
+          <span>施設の写真をここに</span>
+        </div>
+      </div>
+      <div class="about-text fade-in">
+        <h3>「みんなが親しむ現代版公民館」<br>人と情報が集まるまちの茶の間</h3>
+        <p>
+          オチアイに入ると、古民家ならではの広い縁側や畳の部屋が出迎えてくれます。そこにいる人と話したり、お茶を飲んだりして、ただ楽しい時間を過ごすのもいい。
+        </p>
+        <p>
+          もしやりたいことや課題があるなら、仲間を得てものごとが良い方へ向かうように活動していくのもいい。目的があってもなくても、ここはいつでも「落ち合える場所」です。
+        </p>
+        <a href="#services" class="btn-secondary" style="display:inline-block; margin-top:1rem; font-size:12px; padding:10px 24px;">できることを見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">Features</span>
+      <h2 class="section-title">オチアイの特徴</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <span class="feature-num">01</span>
+        <h3 class="feature-title">古民家の縁側と<br>畳の空間</h3>
+        <p class="feature-desc">広い縁側と畳の部屋が広がる、懐かしくてほっとする空間。お茶を飲みながら、ゆっくり過ごしてください。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-num">02</span>
+        <h3 class="feature-title">誰でも自由に<br>使える場</h3>
+        <p class="feature-desc">コワーキングスペースとして、お茶処として、イベント会場として。使い方はあなた次第。目的がなくても来てください。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-num">03</span>
+        <h3 class="feature-title">"やりたい"を<br>カタチにする拠点</h3>
+        <p class="feature-desc">学生と地域の大人をつなぎ、起業支援からまちづくりまで。チャレンジを応援するプロジェクトの拠点です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">オチアイでできること</h2>
+      <div class="divider"></div>
+      <p class="section-lead">コワーキングからイベント開催、バーチャルオフィスまで。あなたの使い方に合わせてご利用いただけます。</p>
+    </div>
+    <div class="services-list fade-in">
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">お茶処・くつろぎスペース</p>
+          <p class="service-desc">縁側や畳でゆっくりお茶を飲みながら過ごせます</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">コワーキング・在宅ワーク</p>
+          <p class="service-desc">Wi-Fi完備。オンライン会議も可能です</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">イベント・ワークショップ</p>
+          <p class="service-desc">貸切利用でイベントやセミナーの開催ができます</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">チャレンジショップ・出店</p>
+          <p class="service-desc">販売・出店の場としてご活用いただけます</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">バーチャルオフィス</p>
+          <p class="service-desc">登記・住所利用に対応しています</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">住居人兼管理人制度</p>
+          <p class="service-desc">オチアイに住みながら施設を運営する仕組みです</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">私設図書館</p>
+          <p class="service-desc">本を持ち寄り、みんなで育てる図書館スペース</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div>
+          <p class="service-name">荷物預かり・郵便受け取り</p>
+          <p class="service-desc">地域のハブとして荷物の一時預かりも対応</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">Visit</span>
+      <h2 class="section-title">ご利用案内</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="visit-grid fade-in">
+      <div class="visit-block">
+        <h3>開館時間</h3>
+        <div class="hours-row">
+          <span class="hours-label">スタッフアワー</span>
+          <span class="hours-time">9:00 〜 14:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-label">セルフチェックイン</span>
+          <span class="hours-time">14:00 〜 17:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-label">貸切・出店利用</span>
+          <span class="hours-time">要予約</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-label">土日祝</span>
+          <span class="hours-time">応相談</span>
+        </div>
+        <p style="margin-top:1rem; font-size:12px; color:var(--ink-muted); line-height:1.8;">
+          ※ 14:00以降は無人のセルフチェックインになります。<br>
+          ※ 土日祝の利用はお問い合わせください。
+        </p>
+      </div>
+      <div class="visit-block">
+        <h3>利用料金</h3>
+        <span class="price-main">無料</span>
+        <p class="price-sub">
+          オチアイは無料でご利用いただけます。<br>
+          よかったらカンパをいただけると嬉しいです。
+        </p>
+        <div class="price-note">
+          <p>
+            「おかげさまで」という名前の通り、みなさんに支えてもらいながら運営しています。気持ちの分だけ、お気持ちを。
+          </p>
+        </div>
+        <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary" style="font-size:12px; padding:10px 20px;">ご予約はこちら</a>
+          <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" class="btn-secondary" style="font-size:12px; padding:9px 20px;">お問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">Support</span>
+      <h2 class="section-title">オチアイが応援していること</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="support-grid">
+      <div class="support-card fade-in">
+        <div class="support-img">
+          <!-- <img src="photo1.jpg" alt="人のアンテナショップ" style="width:100%;height:100%;object-fit:cover;"> -->
+          <span style="position:relative;z-index:1;font-size:11px;letter-spacing:0.1em;color:var(--ink-muted);">写真をここに</span>
+        </div>
+        <div class="support-body">
+          <span class="support-tag">People</span>
+          <p class="support-title">人のアンテナショップ</p>
+          <p class="support-desc">地域人材の発掘・創出・認知拡大・ネットワーク形成。地域の「人」が集まる場所。</p>
+        </div>
+      </div>
+      <div class="support-card fade-in">
+        <div class="support-img">
+          <span style="position:relative;z-index:1;font-size:11px;letter-spacing:0.1em;color:var(--ink-muted);">写真をここに</span>
+        </div>
+        <div class="support-body">
+          <span class="support-tag">Students</span>
+          <p class="support-title">ガクチカ応援</p>
+          <p class="support-desc">高校生まちづくりプロジェクト・社会貢献活動。学生と企業とのマッチングを支援します。</p>
+        </div>
+      </div>
+      <div class="support-card fade-in">
+        <div class="support-img">
+          <span style="position:relative;z-index:1;font-size:11px;letter-spacing:0.1em;color:var(--ink-muted);">写真をここに</span>
+        </div>
+        <div class="support-body">
+          <span class="support-tag">Challenge</span>
+          <p class="support-title">アイディア相談会</p>
+          <p class="support-desc">起業・事業・企画・まちづくり。あなたの「やりたい」を一緒に形にしていきましょう。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">News</span>
+      <h2 class="section-title">お知らせ・イベント</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="news-list fade-in">
+      <!-- ここにお知らせを追加していく。Claude Code に「お知らせを追加して」と伝えるだけでOK -->
+      <a href="#" class="news-item">
+        <span class="news-date">2025.06.01</span>
+        <span class="news-cat">お知らせ</span>
+        <span class="news-title">オチアイ、はじめました</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2025.06.01</span>
+        <span class="news-cat">イベント</span>
+        <span class="news-title">6月のアイディア相談会のお知らせ</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2025.05.20</span>
+        <span class="news-cat">お知らせ</span>
+        <span class="news-title">5月の土日特別開館日について</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2025.05.01</span>
+        <span class="news-cat">活動報告</span>
+        <span class="news-title">高校生まちづくりプロジェクト第一回を開催しました</span>
+      </a>
+    </div>
+    <a href="#" class="news-more">すべてのお知らせを見る →</a>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">Access</span>
+      <h2 class="section-title">アクセス</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="access-grid fade-in">
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.8!2d139.7!3d36.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s%E8%8C%A8%E5%9F%8E%E7%9C%8C%E5%8F%A4%E6%B2%B3%E5%B8%82%E4%B9%85%E8%83%BD925-1!5e0!3m2!1sja!2sjp!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="オチアイへのアクセスマップ">
+        </iframe>
+      </div>
+      <div>
+        <dl class="access-info">
+          <dt>住所</dt>
+          <dd>〒306-0212<br>茨城県古河市久能925-1</dd>
+          <dt>最寄り駅</dt>
+          <dd>JR宇都宮線・両毛線 古河駅より<br>車で約20分</dd>
+          <dt>開館時間</dt>
+          <dd>平日 9:00 〜 17:00<br>土日祝 応相談</dd>
+          <dt>お問い合わせ</dt>
+          <dd>
+            <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-light);">お問い合わせフォーム</a>
+          </dd>
+        </dl>
+        <div class="access-note">
+          お車でお越しの方は敷地内に駐車スペースがあります。<br>
+          公共交通機関をご利用の方はお気軽にお問い合わせください。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-inner" style="text-align:center;">
+    <span class="section-label">Come & Meet</span>
+    <h2 class="section-title">まずは、来てみてください。</h2>
+    <p>
+      目的がなくても大丈夫。<br>
+      お茶を飲みながら、縁側で話しましょう。
+    </p>
+    <div class="hero-buttons">
+      <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary">ご予約はこちら</a>
+      <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" class="btn-secondary">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">おかげさまで公民館 オチアイ</span>
+      <p class="footer-address">
+        〒306-0212 茨城県古河市久能925-1<br>
+        開館時間：平日 9:00〜17:00（土日祝 応相談）
+      </p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#about">オチアイとは</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#access">アクセス</a></li>
+      <li><a href="https://reserve.peraichi.com/r/acb40ffc" target="_blank">施設予約</a></li>
+      <li>
+        <a href="https://www.instagram.com/ochiai_koga/" target="_blank" class="sns-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+          </svg>
+          Instagram
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© おかげさまで公民館オチアイ All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ハンバーガーメニュー
+  const ham = document.getElementById('hamburger');
+  const nav = document.getElementById('nav-links');
+  ham.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // スムーズスクロール（ナビリンク）
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        nav.classList.remove('open');
+        window.scrollTo({ top: target.offsetTop - 56, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
