@@ -65,12 +65,21 @@
   }
 
   .nav-logo {
-    font-family: var(--serif);
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--ink);
     text-decoration: none;
-    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-logo img {
+    height: 44px;
+    width: auto;
+    display: block;
+    filter: sepia(0%) opacity(85%);
+    transition: filter 0.3s;
+  }
+
+  .nav-logo:hover img {
+    filter: sepia(0%) opacity(100%);
   }
 
   .nav-links {
@@ -125,40 +134,47 @@
     position: relative;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--paper-warm);
   }
 
-  .hero-bg {
+  .hero-photo-bg {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 60%, rgba(139,94,60,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(74,103,65,0.06) 0%, transparent 50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    z-index: 0;
   }
 
-  /* 縁側の柱イメージ（装飾線） */
-  .hero-pillar {
+  .hero-overlay {
     position: absolute;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    inset: 0;
+    background: rgba(245,237,224,0.55);
+    z-index: 1;
   }
-  .hero-pillar.left { left: 12%; }
-  .hero-pillar.right { right: 12%; }
 
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
-    padding: 6rem 2rem 4rem;
+    padding-top: 80px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
     max-width: 640px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-eyebrow {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     color: var(--accent);
     font-family: var(--sans);
@@ -167,30 +183,35 @@
     display: block;
   }
 
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 1.4;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .hero-logo {
+    display: block;
+    width: 320px;
+    max-width: 80vw;
+    height: auto;
+    filter: sepia(20%) opacity(0.9);
+    margin-bottom: 1.5rem;
+    animation: fadeIn 2s ease-in-out both;
   }
 
   .hero-subtitle {
     font-family: var(--serif);
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    color: var(--ink-muted);
+    font-size: 1.1rem;
+    color: var(--ink-light);
     font-weight: 300;
-    letter-spacing: 0.12em;
-    margin-bottom: 2.5rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 2rem;
   }
 
   .hero-desc {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--ink-light);
     line-height: 2;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     letter-spacing: 0.04em;
   }
 
@@ -887,8 +908,196 @@
     .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
 
-    .hero-pillar { display: none; }
-    .hero-content { padding: 5rem 1.25rem 3rem; }
+    .hero-content { padding-top: 80px; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .layer-item { gap: 1rem; }
+    .firsttime-item { padding: 1rem 1.25rem; }
+  }
+
+  /* ── HERO TAGLINE ── */
+  .hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── INTRO ── */
+  #intro { background: var(--paper-warm); }
+
+  .intro-body {
+    max-width: 620px;
+    margin: 2.5rem auto 0;
+  }
+
+  .intro-body p {
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 2.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .text-highlight {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.9;
+    font-weight: 400;
+    border-left: 3px solid var(--accent-light);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--paper);
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ── VALUES ── */
+  #values { background: var(--paper); }
+
+  /* ── REASON ── */
+  #reason { background: var(--paper-warm); }
+
+  .reason-body {
+    max-width: 620px;
+    margin: 2.5rem auto 0;
+  }
+
+  .reason-body p {
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 2.2;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── LAYERS ── */
+  #layers { background: var(--paper); }
+
+  .layers-list {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .layer-item {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .layer-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--paper-dark);
+    font-weight: 300;
+    flex-shrink: 0;
+    width: 2.5rem;
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .layer-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+
+  .layer-desc {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  /* ── SUPPORT-US ── */
+  #support-us { background: var(--green-light); }
+
+  .support-us-body {
+    max-width: 620px;
+    margin: 2.5rem auto 0;
+  }
+
+  .support-us-body p {
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 2.2;
+    margin-bottom: 1rem;
+  }
+
+  /* ── ADAY（オチアイの一日） ── */
+  #aday { background: var(--paper-warm); }
+
+  .scene-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 680px;
+  }
+
+  .scene-item {
+    padding: 1.75rem 2rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .scene-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 1rem; bottom: 1rem;
+    width: 3px;
+    background: var(--accent-light);
+    border-radius: 0 2px 2px 0;
+    opacity: 0.5;
+  }
+
+  .scene-text {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 2;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FAQ ── */
+  #faq { background: var(--paper); }
+
+  .faq-list {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-q {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  .faq-q::before {
+    content: 'Q. ';
+    color: var(--accent);
+  }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 2;
+    padding-left: 1.75rem;
   }
 </style>
 </head>
@@ -896,14 +1105,14 @@
 
 <!-- ナビゲーション -->
 <nav>
-  <a href="#hero" class="nav-logo">おかげさまで公民館 オチアイ</a>
+  <a href="#hero" class="nav-logo"><img src="ochiai-logo-transparent.png" alt="おかげさまで公民館 オチアイ"></a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#about">オチアイとは</a></li>
-    <li><a href="#services">サービス</a></li>
-    <li><a href="#visit">ご利用案内</a></li>
+    <li><a href="#intro">オチアイとは</a></li>
+    <li><a href="#layers">関わり方</a></li>
+    <li><a href="#aday">オチアイの一日</a></li>
     <li><a href="#news">お知らせ</a></li>
     <li><a href="#access">アクセス</a></li>
-    <li><a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="nav-reserve">ご予約</a></li>
+    <li><a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="nav-reserve">来てみる</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
@@ -912,248 +1121,205 @@
 
 <!-- ヒーロー -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-pillar left"></div>
-  <div class="hero-pillar right"></div>
+  <img src="オチアイ外観.JPG" alt="" class="hero-photo-bg">
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">茨城県古河市 久能 ── 私設公民館</span>
-    <h1 class="hero-title">おかげさまで<br>公民館 オチアイ</h1>
+    <span class="hero-eyebrow">茨城県古河市久能　私設公民館</span>
+    <img src="ochiai-logo-transparent.png" alt="おかげさまで公民館 オチアイ" class="hero-logo">
+    <p class="hero-tagline">使う場所じゃない。関わる場所。</p>
     <p class="hero-subtitle">good meet, good place</p>
-    <p class="hero-desc">
-      誰でも自由に、<br>
-      目的があってもなくても、<br>
-      落ち合える場所。
-    </p>
     <div class="hero-buttons">
-      <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary">ご予約はこちら</a>
-      <a href="#about" class="btn-secondary">オチアイを知る</a>
+      <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary">まず来てみる</a>
+      <a href="#intro" class="btn-secondary">オチアイを知る</a>
     </div>
   </div>
   <div class="hero-scroll">scroll</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
+<!-- 60秒でわかるオチアイ -->
+<section id="intro">
   <div class="section-inner">
     <div class="fade-in">
-      <span class="section-label">About</span>
-      <h2 class="section-title">まるで実家。<br>懐かしさが心を包む場所。</h2>
+      <span class="section-label">What is Ochiai</span>
+      <h2 class="section-title">60秒でわかる、<br>オチアイのこと。</h2>
       <div class="divider"></div>
     </div>
-    <div class="about-grid">
-      <div class="about-photo fade-in">
-        <div class="photo-frame"></div>
-        <div class="photo-placeholder">
-          <!-- ここに施設写真を入れてください -->
-          <!-- <img src="施設写真.jpg" alt="オチアイ外観" style="width:100%;height:100%;object-fit:cover;"> -->
-          <span class="photo-icon">🏡</span>
-          <span>施設の写真をここに</span>
-        </div>
-      </div>
-      <div class="about-text fade-in">
-        <h3>「みんなが親しむ現代版公民館」<br>人と情報が集まるまちの茶の間</h3>
-        <p>
-          オチアイに入ると、古民家ならではの広い縁側や畳の部屋が出迎えてくれます。そこにいる人と話したり、お茶を飲んだりして、ただ楽しい時間を過ごすのもいい。
-        </p>
-        <p>
-          もしやりたいことや課題があるなら、仲間を得てものごとが良い方へ向かうように活動していくのもいい。目的があってもなくても、ここはいつでも「落ち合える場所」です。
-        </p>
-        <a href="#services" class="btn-secondary" style="display:inline-block; margin-top:1rem; font-size:12px; padding:10px 24px;">できることを見る</a>
-      </div>
+    <div class="intro-body fade-in">
+      <p>オチアイは、茨城県古河市の古民家を使った私設公民館です。</p>
+      <p>コワーキングスペースでも、カフェでも、レンタルスペースでもありません。目的のある人も、ない人も、だれでも来ていい場所です。</p>
+      <p>勉強しに来る日も、だれかと話したい日も、ただ縁側でぼーっとしたい日も。そのどれもが、ここでは「正しい使い方」です。</p>
+      <p>古民家ならではの縁側と畳の空間で、来た人どうしがゆるやかに関わり合っていく。そういう場所にしたいと思っています。</p>
+      <blockquote class="text-highlight">「おかげさまで」という名前の通り、来てくれる人、関わってくれる人、応援してくれる人のおかげで成り立っています。</blockquote>
+      <p>古河市久能925番地の古民家で、若者と地域の人々が出会い、なにかが生まれていく場をつくっています。</p>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features">
+<!-- 大切にしていること -->
+<section id="values">
   <div class="section-inner">
     <div class="fade-in">
-      <span class="section-label">Features</span>
-      <h2 class="section-title">オチアイの特徴</h2>
+      <span class="section-label">Values</span>
+      <h2 class="section-title">大切にしていること</h2>
       <div class="divider"></div>
     </div>
     <div class="features-grid">
       <div class="feature-card fade-in">
         <span class="feature-num">01</span>
-        <h3 class="feature-title">古民家の縁側と<br>畳の空間</h3>
-        <p class="feature-desc">広い縁側と畳の部屋が広がる、懐かしくてほっとする空間。お茶を飲みながら、ゆっくり過ごしてください。</p>
+        <h3 class="feature-title">関係性</h3>
+        <p class="feature-desc">サービスを提供する場ではなく、人と人が出会い、関わり合える場をつくること。ここで生まれる関係に意味があると思っています。</p>
       </div>
       <div class="feature-card fade-in">
         <span class="feature-num">02</span>
-        <h3 class="feature-title">誰でも自由に<br>使える場</h3>
-        <p class="feature-desc">コワーキングスペースとして、お茶処として、イベント会場として。使い方はあなた次第。目的がなくても来てください。</p>
+        <h3 class="feature-title">ひらかれていること</h3>
+        <p class="feature-desc">目的がなくてもいい。役に立たなくてもいい。だれかの「ただいられる場所」であることを、大事にしています。</p>
       </div>
       <div class="feature-card fade-in">
         <span class="feature-num">03</span>
-        <h3 class="feature-title">"やりたい"を<br>カタチにする拠点</h3>
-        <p class="feature-desc">学生と地域の大人をつなぎ、起業支援からまちづくりまで。チャレンジを応援するプロジェクトの拠点です。</p>
+        <h3 class="feature-title">共感で成り立つこと</h3>
+        <p class="feature-desc">使用料をとらず、共感と応援で続けていく形を試みています。「おかげさまで」の名前はその気持ちそのものです。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
+<!-- なぜこの形で運営しているのか -->
+<section id="reason">
   <div class="section-inner">
     <div class="fade-in">
-      <span class="section-label">Services</span>
-      <h2 class="section-title">オチアイでできること</h2>
+      <span class="section-label">Why</span>
+      <h2 class="section-title">なぜ、利用料を<br>とらないのか。</h2>
       <div class="divider"></div>
-      <p class="section-lead">コワーキングからイベント開催、バーチャルオフィスまで。あなたの使い方に合わせてご利用いただけます。</p>
     </div>
-    <div class="services-list fade-in">
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">お茶処・くつろぎスペース</p>
-          <p class="service-desc">縁側や畳でゆっくりお茶を飲みながら過ごせます</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">コワーキング・在宅ワーク</p>
-          <p class="service-desc">Wi-Fi完備。オンライン会議も可能です</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">イベント・ワークショップ</p>
-          <p class="service-desc">貸切利用でイベントやセミナーの開催ができます</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">チャレンジショップ・出店</p>
-          <p class="service-desc">販売・出店の場としてご活用いただけます</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">バーチャルオフィス</p>
-          <p class="service-desc">登記・住所利用に対応しています</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">住居人兼管理人制度</p>
-          <p class="service-desc">オチアイに住みながら施設を運営する仕組みです</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">私設図書館</p>
-          <p class="service-desc">本を持ち寄り、みんなで育てる図書館スペース</p>
-        </div>
-      </div>
-      <div class="service-item">
-        <div class="service-dot"></div>
-        <div>
-          <p class="service-name">荷物預かり・郵便受け取り</p>
-          <p class="service-desc">地域のハブとして荷物の一時預かりも対応</p>
-        </div>
-      </div>
+    <div class="reason-body fade-in">
+      <p>「料金を設定した瞬間に、ここは"使う場所"になってしまう」。そう思ったから、利用料をとることをやめました。</p>
+      <p>お金を払ってサービスを受けるのではなく、ここを必要だと思ってくれる人が、自分の意志で関わっていく。それがオチアイの形です。</p>
+      <blockquote class="text-highlight">来てくれるだけでも、話してくれるだけでも、応援してくれるだけでも、それぞれが「おかげさまで」の一部になっています。</blockquote>
+      <p>運営費は、共感してくれた方からのカンパや、イベント収益などで賄っています。完璧な仕組みではありませんが、この形で続けることに意味があると信じています。</p>
+      <p>もし「この場所が続いてほしい」と思ってくれたら、ぜひ応援ください。でも、それが来てくれる条件ではありません。</p>
     </div>
   </div>
 </section>
 
-<!-- VISIT -->
-<section id="visit">
+<!-- 関わり方のレイヤー -->
+<section id="layers">
   <div class="section-inner">
     <div class="fade-in">
-      <span class="section-label">Visit</span>
-      <h2 class="section-title">ご利用案内</h2>
+      <span class="section-label">How to Relate</span>
+      <h2 class="section-title">関わり方は、<br>自分で決めていい。</h2>
       <div class="divider"></div>
+      <p class="section-lead">「来るだけ」から「一緒につくる」まで、どこから始めてもいいし、どこで止まってもいい。</p>
     </div>
-    <div class="visit-grid fade-in">
-      <div class="visit-block">
-        <h3>開館時間</h3>
-        <div class="hours-row">
-          <span class="hours-label">スタッフアワー</span>
-          <span class="hours-time">9:00 〜 14:00</span>
+    <div class="layers-list">
+      <div class="layer-item fade-in">
+        <span class="layer-num">01</span>
+        <div class="layer-body">
+          <p class="layer-title">ただ来る</p>
+          <p class="layer-desc">予約して来るだけでいい。縁側でお茶を飲んで、ぼーっとしていてもいい。それだけで十分です。</p>
         </div>
-        <div class="hours-row">
-          <span class="hours-label">セルフチェックイン</span>
-          <span class="hours-time">14:00 〜 17:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-label">貸切・出店利用</span>
-          <span class="hours-time">要予約</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-label">土日祝</span>
-          <span class="hours-time">応相談</span>
-        </div>
-        <p style="margin-top:1rem; font-size:12px; color:var(--ink-muted); line-height:1.8;">
-          ※ 14:00以降は無人のセルフチェックインになります。<br>
-          ※ 土日祝の利用はお問い合わせください。
-        </p>
       </div>
-      <div class="visit-block">
-        <h3>利用料金</h3>
-        <span class="price-main">無料</span>
-        <p class="price-sub">
-          オチアイは無料でご利用いただけます。<br>
-          よかったらカンパをいただけると嬉しいです。
-        </p>
-        <div class="price-note">
-          <p>
-            「おかげさまで」という名前の通り、みなさんに支えてもらいながら運営しています。気持ちの分だけ、お気持ちを。
-          </p>
+      <div class="layer-item fade-in">
+        <span class="layer-num">02</span>
+        <div class="layer-body">
+          <p class="layer-title">関わる</p>
+          <p class="layer-desc">来ている人と話す。イベントに参加する。名前を覚えてもらう。少しずつ、ここの一部になっていく。</p>
         </div>
-        <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary" style="font-size:12px; padding:10px 20px;">ご予約はこちら</a>
-          <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" class="btn-secondary" style="font-size:12px; padding:9px 20px;">お問い合わせ</a>
+      </div>
+      <div class="layer-item fade-in">
+        <span class="layer-num">03</span>
+        <div class="layer-body">
+          <p class="layer-title">やってみる</p>
+          <p class="layer-desc">この場所を使って何かをやってみる。企画を相談する。ここを会場にイベントを開く。アイデアがあれば話しかけてください。</p>
+        </div>
+      </div>
+      <div class="layer-item fade-in">
+        <span class="layer-num">04</span>
+        <div class="layer-body">
+          <p class="layer-title">支える</p>
+          <p class="layer-desc">オチアイが続いてほしいと思ったら、応援という形で関わる。カンパでも、SNSでのシェアでも、知人を連れてきてくれるのでも。</p>
+        </div>
+      </div>
+      <div class="layer-item fade-in">
+        <span class="layer-num">05</span>
+        <div class="layer-body">
+          <p class="layer-title">一緒につくる</p>
+          <p class="layer-desc">運営に加わる。住み込み管理人として住む。この場所そのものの一部になる。そういう関わり方も、ひらいています。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SUPPORT -->
-<section id="support">
+<!-- 応援について -->
+<section id="support-us">
   <div class="section-inner">
     <div class="fade-in">
-      <span class="section-label">Support</span>
-      <h2 class="section-title">オチアイが応援していること</h2>
+      <span class="section-label">カンパ・応援・協賛</span>
+      <h2 class="section-title">応援してもらえると、<br>続けていけます。</h2>
       <div class="divider"></div>
     </div>
-    <div class="support-grid">
-      <div class="support-card fade-in">
-        <div class="support-img">
-          <!-- <img src="photo1.jpg" alt="人のアンテナショップ" style="width:100%;height:100%;object-fit:cover;"> -->
-          <span style="position:relative;z-index:1;font-size:11px;letter-spacing:0.1em;color:var(--ink-muted);">写真をここに</span>
-        </div>
-        <div class="support-body">
-          <span class="support-tag">People</span>
-          <p class="support-title">人のアンテナショップ</p>
-          <p class="support-desc">地域人材の発掘・創出・認知拡大・ネットワーク形成。地域の「人」が集まる場所。</p>
-        </div>
+    <div class="support-us-body fade-in">
+      <p>オチアイは、利用料をいただいていません。<br>その代わり、ここを続けてほしいと思ってくれた方の<br>応援として、気持ちの分だけカンパをいただいています。</p>
+      <blockquote class="text-highlight">来ることと、応援することは、別のことです。<br>応援しなくても、来てください。<br>それだけで、オチアイはオチアイでいられます。</blockquote>
+      <p>でも、もしここに来て「いい場所だな」と思ってくれたなら、ぜひ。<br>応援したい気持ちがあれば、施設内にカンパ箱があります。<br>100円でも、500円でも。<br>カンパは、次に来る人のための場所を守ることに使われます。</p>
+      <p style="margin-top:1.5rem;">
+        <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" class="btn-secondary" style="display:inline-block; font-size:13px; padding:10px 24px;">応援・問い合わせはこちら</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- オチアイの一日 -->
+<section id="aday">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">A Day at Ochiai</span>
+      <h2 class="section-title">オチアイの一日</h2>
+      <div class="divider"></div>
+      <p class="section-lead">こんなことが、ふつうに起きている場所です。</p>
+    </div>
+    <div class="scene-list fade-in">
+      <div class="scene-item">
+        <p class="scene-text">午後2時。縁側でコーヒーを飲みながら、隣に座った人と気づいたら1時間話していた。名前も知らないまま、でもなんか悪くなかった。</p>
       </div>
-      <div class="support-card fade-in">
-        <div class="support-img">
-          <span style="position:relative;z-index:1;font-size:11px;letter-spacing:0.1em;color:var(--ink-muted);">写真をここに</span>
-        </div>
-        <div class="support-body">
-          <span class="support-tag">Students</span>
-          <p class="support-title">ガクチカ応援</p>
-          <p class="support-desc">高校生まちづくりプロジェクト・社会貢献活動。学生と企業とのマッチングを支援します。</p>
-        </div>
+      <div class="scene-item">
+        <p class="scene-text">特に予定はなかった。ただ、ここにいると落ち着く気がして、また来てしまった。それでいいんだと思うようになった。</p>
       </div>
-      <div class="support-card fade-in">
-        <div class="support-img">
-          <span style="position:relative;z-index:1;font-size:11px;letter-spacing:0.1em;color:var(--ink-muted);">写真をここに</span>
-        </div>
-        <div class="support-body">
-          <span class="support-tag">Challenge</span>
-          <p class="support-title">アイディア相談会</p>
-          <p class="support-desc">起業・事業・企画・まちづくり。あなたの「やりたい」を一緒に形にしていきましょう。</p>
-        </div>
+      <div class="scene-item">
+        <p class="scene-text">「何かやってみたい」と話したら、気づいたら日程が決まっていた。背中を押されたというより、一緒に考えてもらった感じ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- よくある質問 -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">よくある質問</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list fade-in">
+      <div class="faq-item">
+        <p class="faq-q">予約は必要ですか？</p>
+        <p class="faq-a">基本的にはお願いしています。予約フォームから2〜3分でできます。「行ってみます」くらいの気持ちで入れてもらえれば大丈夫です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">一人で来ても大丈夫ですか？</p>
+        <p class="faq-a">大丈夫です。むしろ一人で来る人がほとんどです。知り合いがいなくても、来ているうちに自然とつながっていくことが多いです。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">利用料はかかりますか？</p>
+        <p class="faq-a">いただいていません。施設内にカンパ箱を置いていますが、入れるかどうかはあなた次第です。来ることに条件はありません。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">応援しないといけませんか？</p>
+        <p class="faq-a">まったく、いりません。「続いてほしいな」と思ったときに、気持ちの分だけしてもらえれば十分です。来てくれるだけで、ありがたいです。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">イベントや活動に参加しないといけませんか？</p>
+        <p class="faq-a">しなくていいです。ただ来て、お茶を飲んで、帰る。それで十分です。参加したくなったときに、してもらえれば。</p>
       </div>
     </div>
   </div>
@@ -1168,7 +1334,6 @@
       <div class="divider"></div>
     </div>
     <div class="news-list fade-in">
-      <!-- ここにお知らせを追加していく。Claude Code に「お知らせを追加して」と伝えるだけでOK -->
       <a href="#" class="news-item">
         <span class="news-date">2025.06.01</span>
         <span class="news-cat">お知らせ</span>
@@ -1217,19 +1382,55 @@
           <dt>住所</dt>
           <dd>〒306-0212<br>茨城県古河市久能925-1</dd>
           <dt>最寄り駅</dt>
-          <dd>JR宇都宮線・両毛線 古河駅より<br>車で約20分</dd>
+          <dd>JR宇都宮線 古河駅より<br>車で約20分</dd>
           <dt>開館時間</dt>
-          <dd>平日 9:00 〜 17:00<br>土日祝 応相談</dd>
+          <dd>平日 9:00〜14:00（スタッフアワー）<br>14:00〜17:00（セルフチェックイン）<br>土日祝 応相談</dd>
           <dt>お問い合わせ</dt>
-          <dd>
-            <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-light);">お問い合わせフォーム</a>
-          </dd>
+          <dd><a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-light);">お問い合わせフォーム</a></dd>
         </dl>
         <div class="access-note">
-          お車でお越しの方は敷地内に駐車スペースがあります。<br>
-          公共交通機関をご利用の方はお気軽にお問い合わせください。
+          お車でお越しの方は敷地内に駐車スペースがあります。公共交通機関をご利用の方はお気軽にお問い合わせください。
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram -->
+<section id="instagram" style="background:var(--paper-warm); text-align:center;">
+  <div class="section-inner">
+    <div class="fade-in">
+      <span class="section-label">Instagram</span>
+      <h2 class="section-title">日々のオチアイ</h2>
+      <div class="divider" style="margin: 1.5rem auto;"></div>
+      <p style="font-size:15px; color:var(--ink-light); margin-bottom:2rem;">オチアイの日常は、Instagramで発信しています。</p>
+    </div>
+    <div class="fade-in">
+      <a href="https://www.instagram.com/ochiai_koga/" target="_blank" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 14px 32px;
+        border: 1px solid var(--accent);
+        border-radius: 2px;
+        text-decoration: none;
+        color: var(--accent);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        font-family: var(--sans);
+        font-weight: 400;
+        transition: background 0.2s, color 0.2s;
+      "
+      onmouseover="this.style.background='var(--accent)';this.style.color='#fff';"
+      onmouseout="this.style.background='transparent';this.style.color='var(--accent)';">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+        </svg>
+        @ochiai_koga を のぞいてみる
+      </a>
+      <p style="margin-top:1.25rem; font-size:12px; color:var(--ink-muted); letter-spacing:0.05em;">近況・イベント・日常のひとコマをお届けしています。</p>
     </div>
   </div>
 </section>
@@ -1237,15 +1438,15 @@
 <!-- CTA -->
 <section id="cta">
   <div class="section-inner" style="text-align:center;">
-    <span class="section-label">Come & Meet</span>
-    <h2 class="section-title">まずは、来てみてください。</h2>
+    <span class="section-label">Come & Stay</span>
+    <h2 class="section-title">ただ来るだけでもいいし、<br>関わってもいい。</h2>
     <p>
-      目的がなくても大丈夫。<br>
-      お茶を飲みながら、縁側で話しましょう。
+      目的があってもなくても。知り合いがいなくても。はじめてでも。<br>
+      オチアイはいつでも、ひらいています。
     </p>
     <div class="hero-buttons">
-      <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary">ご予約はこちら</a>
-      <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" class="btn-secondary">お問い合わせ</a>
+      <a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank" class="btn-primary">来てみる</a>
+      <a href="https://forms.gle/ajhwihw4jWiuW2cL9" target="_blank" class="btn-secondary">問い合わせる</a>
     </div>
   </div>
 </section>
@@ -1261,10 +1462,10 @@
       </p>
     </div>
     <ul class="footer-links">
-      <li><a href="#about">オチアイとは</a></li>
-      <li><a href="#services">サービス</a></li>
+      <li><a href="#intro">オチアイとは</a></li>
+      <li><a href="#layers">関わり方</a></li>
       <li><a href="#access">アクセス</a></li>
-      <li><a href="https://reserve.peraichi.com/r/acb40ffc" target="_blank">施設予約</a></li>
+      <li><a href="https://reserve.peraichi.com/r/d87a9d27" target="_blank">来てみる</a></li>
       <li>
         <a href="https://www.instagram.com/ochiai_koga/" target="_blank" class="sns-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
