@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ、オチアイという場所があるのか｜一般社団法人アユミル</title>
+<meta name="description" content="特別なことをしなくても、そのままでいられる場所が、もう少し増えたらいい。そう思ったことが、はじまりでした。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #2a2018;
+  --ink-mid: #4a3c2c;
+  --ink-light: #7a6a54;
+  --ink-muted: #a89880;
+  --paper: #faf6ef;
+  --paper-warm: #f5ede0;
+  --paper-mid: #ede3d4;
+  --accent: #8b5e3c;
+  --accent-light: #c4956a;
+  --border: rgba(139,94,60,0.13);
+  --serif: 'Noto Serif JP', serif;
+  --sans: 'Noto Sans JP', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 300;
+  line-height: 2.1;
+  font-size: 15px;
+}
+
+/* ── nav ── */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  background: rgba(250,246,239,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-back {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--accent); }
+.nav-back::before {
+  content: '←';
+  font-size: 11px;
+}
+
+/* ── hero ── */
+.page-hero {
+  padding: 120px 2rem 80px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page-eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--accent-light);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.page-lead {
+  font-size: 16px;
+  color: var(--ink-mid);
+  line-height: 2.2;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── 本文 ── */
+.page-body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+.body-block {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.body-block.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.body-block:last-of-type {
+  border-bottom: none;
+}
+
+.body-block p {
+  font-size: 15px;
+  color: var(--ink-light);
+  line-height: 2.2;
+  margin-bottom: 1.5rem;
+}
+.body-block p:last-child { margin-bottom: 0; }
+
+.body-block p strong {
+  color: var(--ink-mid);
+  font-weight: 400;
+}
+
+/* 引用スタイルの段落 */
+.body-block.quote {
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--accent-light);
+  border-bottom: none;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.body-block.quote p {
+  font-size: 15px;
+  color: var(--ink-mid);
+  line-height: 2.2;
+}
+
+/* アユミルについて */
+.ayumiru-block {
+  background: var(--paper-warm);
+  border-radius: 2px;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.ayumiru-block.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ayumiru-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent-light);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.ayumiru-block p {
+  font-size: 14px;
+  color: var(--ink-light);
+  line-height: 2.1;
+  margin-bottom: 1rem;
+}
+.ayumiru-block p:last-child { margin-bottom: 0; }
+
+/* ── 締め ── */
+.closing {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.closing.in { opacity:1; transform:translateY(0); }
+
+.closing p {
+  font-size: 16px;
+  color: var(--ink-mid);
+  line-height: 2.2;
+}
+
+/* ── フッターリンク ── */
+.page-footer {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.page-footer.in { opacity:1; transform:translateY(0); }
+
+.footer-link {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.footer-link:hover { color: var(--accent); }
+.footer-link::after {
+  content: '→';
+  font-size: 11px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s;
+}
+.footer-link:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.footer-credit {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-muted);
+  opacity: 0.5;
+  margin-top: 2rem;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+  .page-hero { padding: 100px 1.25rem 60px; }
+  .page-body { padding: 0 1.25rem 4rem; }
+  .closing { padding: 0 1.25rem 4rem; }
+  .page-footer { padding: 3rem 1.25rem 4rem; }
+  .ayumiru-block { padding: 1.75rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">公民館オチアイに戻る</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-eyebrow">Why Ochiai</span>
+  <h1 class="page-title">なぜ、オチアイという<br>場所があるのか</h1>
+  <p class="page-lead">
+    特別なことをしなくても、<br>
+    そのままでいられる場所が、もう少し増えたらいい。<br><br>
+    そう思ったことが、はじまりでした。
+  </p>
+</div>
+
+<div class="page-body">
+
+  <div class="body-block">
+    <p>
+      何かができる人、役に立つ人が評価されやすい社会は、<br>
+      それはそれで大切な面もあります。
+    </p>
+    <p>
+      でもその一方で、<br>
+      うまくできないときや、立ち止まっているときに、<br>
+      居場所がなくなってしまう感覚を抱く人もいます。
+    </p>
+  </div>
+
+  <div class="body-block">
+    <p>
+      何かをする場所でありながら、<br>
+      何もしなくてもいい場所。
+    </p>
+    <p>
+      関わる人によって、<br>
+      少しずつ形が変わっていく場所。
+    </p>
+    <p>
+      公民館オチアイは、<br>
+      そうした考えをひとつの形として表現した場所です。
+    </p>
+  </div>
+
+  <div class="body-block">
+    <p>
+      こうした場をおいている背景には、<br>
+      「したい」「やりたい」と思う人の歩みに伴いながら、<br>
+      その想いをかたちにしていきたい、という考えがあります。
+    </p>
+  </div>
+
+  <div class="ayumiru-block">
+    <span class="ayumiru-label">一般社団法人アユミル</span>
+    <p>
+      アユミルは、地域のなかで、そうした関わりを続けてきました。
+    </p>
+    <p>
+      デザインをつくることも、<br>
+      企画を運営することも、<br>
+      地域の魅力を発信することも、<br>
+      どれも特別なことではなく、<br>
+      誰かの「やってみたい」から始まっています。
+    </p>
+    <p>
+      地域の魅力を伝える取り組みや、<br>
+      市民と一緒に場をつくる企画、<br>
+      日々の発信や記録も、<br>
+      その延長線上にあります。
+    </p>
+  </div>
+
+  <div class="body-block">
+    <p>
+      この場所は、<br>
+      誰かを変えるための場所ではありません。
+    </p>
+    <p>
+      その人がその人のままでいられることを、<br>
+      ただ受け止められる場があればいい。
+    </p>
+    <p>
+      オチアイは、<br>
+      そうした考えのなかから生まれた、ひとつの形です。
+    </p>
+  </div>
+
+</div>
+
+<div class="closing">
+  <p></p>
+</div>
+
+<div class="page-footer">
+  <a href="index.html" class="footer-link">公民館オチアイについて</a>
+  <a href="https://www.instagram.com/ayumiru_nk/" target="_blank" class="footer-link">@ayumiru_nk をのぞいてみる</a>
+  <p class="footer-credit">一般社団法人アユミル</p>
+</div>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.body-block, .ayumiru-block, .closing, .page-footer').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
